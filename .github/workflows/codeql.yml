@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char nom[30], prenom[30], classe[20];
+    float prix_base, prix_total;
+
+    // Lecture des informations
+    printf("Entrez le nom du passager : ");
+    scanf("%s", nom);
+
+    printf("Entrez le prénom du passager : ");
+    scanf("%s", prenom);
+
+    printf("Entrez la classe du vol (Economic / Business / First) : ");
+    scanf("%s", classe);
+
+    printf("Entrez le prix de base du billet : ");
+    scanf("%f", &prix_base);
+
+    // Calcul du prix total selon la classe
+    if (strcmp(classe, "Economic") == 0) {
+        prix_total = prix_base;
+    } 
+    else if (strcmp(classe, "Business") == 0) {
+        prix_total = prix_base + (prix_base * 0.25);
+    } 
+    else if (strcmp(classe, "First") == 0) {
+        prix_total = prix_base + (prix_base * 0.50);
+    } 
+    else {
+        printf("Classe invalide !\n");
+        return 1;
+    }
+
+    // Affichage du résultat
+    printf("\n----- Détails du passager -----\n");
+    printf("Nom complet : %s %s\n", prenom, nom);
+    printf("Classe choisie : %s\n", classe);
+    printf("Prix total du billet : %.2f\n", prix_total);
+
+    return 0;
+}
