@@ -1,43 +1,48 @@
 #include <stdio.h>
-#include <string.h>
 
 int main() {
-    char nom[30], prenom[30], classe[20];
-    float prix_base, prix_total;
+    float a, b, resultat;
+    char operateur;
 
-    // Lecture des informations
-    printf("Entrez le nom du passager : ");
-    scanf("%s", nom);
+    // Lecture des données
+    printf("Entrez le premier nombre : ");
+    scanf("%f", &a);
 
-    printf("Entrez le prénom du passager : ");
-    scanf("%s", prenom);
+    printf("Entrez le deuxième nombre : ");
+    scanf("%f", &b);
 
-    printf("Entrez la classe du vol (Economic / Business / First) : ");
-    scanf("%s", classe);
+    printf("Entrez l'opérateur (+, -, *, /) : ");
+    scanf(" %c", &operateur);  // espace avant %c pour ignorer les retours de ligne
 
-    printf("Entrez le prix de base du billet : ");
-    scanf("%f", &prix_base);
+    // Traitement selon l'opérateur
+    switch (operateur) {
+        case '+':
+            resultat = a + b;
+            printf("Résultat : %.2f + %.2f = %.2f\n", a, b, resultat);
+            break;
 
-    // Calcul du prix total selon la classe
-    if (strcmp(classe, "Economic") == 0) {
-        prix_total = prix_base;
-    } 
-    else if (strcmp(classe, "Business") == 0) {
-        prix_total = prix_base + (prix_base * 0.25);
-    } 
-    else if (strcmp(classe, "First") == 0) {
-        prix_total = prix_base + (prix_base * 0.50);
-    } 
-    else {
-        printf("Classe invalide !\n");
-        return 1;
+        case '-':
+            resultat = a - b;
+            printf("Résultat : %.2f - %.2f = %.2f\n", a, b, resultat);
+            break;
+
+        case '*':
+            resultat = a * b;
+            printf("Résultat : %.2f * %.2f = %.2f\n", a, b, resultat);
+            break;
+
+        case '/':
+            if (b == 0) {
+                printf("Erreur : division par zéro impossible !\n");
+            } else {
+                resultat = a / b;
+                printf("Résultat : %.2f / %.2f = %.2f\n", a, b, resultat);
+            }
+            break;
+
+        default:
+            printf("Erreur : opérateur invalide !\n");
     }
-
-    // Affichage du résultat
-    printf("\n----- Détails du passager -----\n");
-    printf("Nom complet : %s %s\n", prenom, nom);
-    printf("Classe choisie : %s\n", classe);
-    printf("Prix total du billet : %.2f\n", prix_total);
 
     return 0;
 }
