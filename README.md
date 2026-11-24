@@ -3,44 +3,49 @@
 
 int main()
 {
-    int num, max, position;
-    int i;
+    long long N, temp;
+    long long decimal, power;
+    int digit, valid;
 
-    i = 0;
+    printf("Enter a binary number: ");
+    scanf("%lld", &N);
 
-    printf("Enter a number (0 to stop): ");
-    scanf("%d", &num);
+    temp = N;
+    decimal = 0;
+    power = 1;
+    valid = 1;
 
-    if (num != 0)
+    if (N < 0)
     {
-        max = num;
-        position = 1;
-        i = 1;
+        valid = 0;
+    }
 
-        while (num != 0)
+    while (temp > 0)
+    {
+        digit = temp % 10;
+
+        if (digit != 0 && digit != 1)
         {
-            printf("Enter a number (0 to stop): ");
-            scanf("%d", &num);
-
-            if (num != 0)
-            {
-                i++;
-
-                if (num > max)
-                {
-                    max = num;
-                    position = i;
-                }
-            }
+            valid = 0;
+            break;
         }
 
-        printf("Largest number = %d\n", max);
-        printf("Position = %d\n", position);
+        decimal = decimal + digit * power;
+
+        power = power * 2;
+        temp = temp / 10;
+    }
+
+    if (valid == 1)
+    {
+        printf("Decimal equivalent = %lld\n", decimal);
     }
     else
     {
-        printf("No numbers were entered.\n");
+        printf("Invalid binary number!\n");
     }
 
     return 0;
 }
+
+            
